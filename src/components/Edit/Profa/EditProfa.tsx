@@ -2,14 +2,18 @@
 
 import React from "react";
 import { useState } from "react";
-import "./AddProfa.css";
-import { addProfa } from "../../../api/profa.ts";
+import "./EditProfa.css";
+import { updateProfa } from "../../../api/profa.ts";
 
-export default function AddProfa() {
-  const [date, setDate] = useState("");
-  const [duration, setDuration] = useState("");
-  const [ages, setAges] = useState("");
-  const [capacity, setCapacity] = useState("");
+export default function AddProfa({ profa }) {
+  const [date, setDate] = useState(profa.date.slice(0, 16));
+  const [duration, setDuration] = useState(
+    `${profa.duration.days ? `${profa.duration.days} days` : ""} ${
+      profa.duration.hours ? `${profa.duration.hours} hours` : ""
+    } ${profa.duration.minutes ? `${profa.duration.minutes} minutes` : ""}`,
+  );
+  const [ages, setAges] = useState(profa.ages);
+  const [capacity, setCapacity] = useState(profa.capacity);
 
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,7 +27,14 @@ export default function AddProfa() {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    const res = await addProfa(date, duration, ages, capacity, token);
+    const res = await updateProfa(
+      date,
+      duration,
+      ages,
+      capacity,
+      token,
+      profa.id,
+    );
 
     if (res.errors) {
       setErrors(res.errors);
@@ -48,9 +59,9 @@ export default function AddProfa() {
       {loading ? (
         <p>Loading..</p>
       ) : submitted ? (
-        <p>Prufutíma bætt við!</p>
+        <p>Prufutími uppfærður!</p>
       ) : (
-        <form onSubmit={handleAdd} className="add-profa-form">
+        <form onSubmit={handleAdd} className="edit-profa-form">
           <div>
             <label htmlFor="date">Dagsetning:</label>
             <input
@@ -94,7 +105,7 @@ export default function AddProfa() {
             onChange={(e) => setCapacity(e.target.value)}
             required
           />
-          <button type="submit">Bæta við</button>
+          <button type="submit">Uppfæra</button>
         </form>
       )}
     </div>

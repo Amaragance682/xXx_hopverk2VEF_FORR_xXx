@@ -55,3 +55,31 @@ export async function addProfa(
   const data = await res.json();
   return data;
 }
+export async function updateProfa(
+  date: string,
+  duration: string,
+  ages: string,
+  capacity: string,
+  token: string,
+  id: number,
+) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/profa/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        date,
+        duration,
+        ages,
+        capacity,
+      }),
+    },
+  );
+
+  const data = await res.json();
+  return data;
+}

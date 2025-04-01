@@ -34,7 +34,14 @@ export function Profa({ profa }) {
     <ProtectedRoute redirect={true}>
       <div className="profa-container">
         <AdminProtectedRoute>
-          <Link href={`/prufutimi/edit?id=${profa.id}`}>Breyta prufutíma</Link>
+          <Link
+            href={{
+              pathname: `/prufutimi/edit`,
+              query: { profa: JSON.stringify(profa) },
+            }}
+          >
+            Breyta prufutíma
+          </Link>
         </AdminProtectedRoute>
         {errors && (
           <ul>

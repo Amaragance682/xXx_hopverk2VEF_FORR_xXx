@@ -113,7 +113,7 @@ export default function AddNamskeid() {
               required
             />
           </div>
-          <button type="submit">Register</button>
+          <button type="submit">Bæta við</button>
         </form>
       )}
     </div>

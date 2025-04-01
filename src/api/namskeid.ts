@@ -70,3 +70,33 @@ export async function addNamskeid(
   const data = await res.json();
   return data;
 }
+export async function updateNamskeid(
+  name: string,
+  description: string,
+  level: string,
+  start_date: string,
+  end_date: string,
+  token: string,
+  id: number,
+) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/namskeid/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name,
+        description,
+        level,
+        start_date,
+        end_date,
+      }),
+    },
+  );
+
+  const data = await res.json();
+  return data;
+}
