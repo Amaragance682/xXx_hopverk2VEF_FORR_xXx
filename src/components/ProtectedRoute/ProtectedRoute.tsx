@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { isTokenValid } from "../../lib/auth.ts";
 import React from "react";
@@ -15,14 +15,20 @@ export default function ProtectedRoute({
   inverted?: boolean;
 }) {
   const router = useRouter();
-  const isAuthenticated = isTokenValid();
-  const shouldRender = inverted ? !isAuthenticated : isAuthenticated;
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (redirect && !shouldRender) {
+    setIsAuthenticated(isTokenValid());
+  }, []);
+
+  useEffect(() => {
+    if (redirect && isAuthenticated !== null && !isAuthenticated) {
       globalThis.location.href = inverted ? "/" : "/login";
     }
-  }, [redirect, shouldRender, router, inverted]);
+  }, [redirect, isAuthenticated, router, inverted]);
 
+  if (isAuthenticated === null) return null;
+
+  const shouldRender = inverted ? !isAuthenticated : isAuthenticated;
   return shouldRender ? <>{children}</> : null;
 }
