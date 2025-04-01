@@ -1,0 +1,26 @@
+.prof-thumb-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.profa-container {
+  padding: 2rem;
+}
+
+.profa-information,
+.profa-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.profa-information div {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}

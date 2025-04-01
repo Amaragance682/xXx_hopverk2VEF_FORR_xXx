@@ -1,0 +1,11 @@
+.footer {
+  padding: 4rem;
+  min-height: 30vh;
+  background-color: black;
+  width: 100%;
+  color: #f5f5dc;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

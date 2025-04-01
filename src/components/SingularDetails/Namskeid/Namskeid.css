@@ -1,0 +1,26 @@
+.nam-thumb-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.namskeid-container {
+  padding: 2rem;
+}
+
+.namskeid-information,
+.namskeid-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.namskeid-information div {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
