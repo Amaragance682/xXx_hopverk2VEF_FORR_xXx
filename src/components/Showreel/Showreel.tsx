@@ -1,5 +1,6 @@
 "use client";
 
+import "./Showreel.css";
 import { motion } from "motion/react";
 import Link from "next/link";
 import React from "react";
@@ -80,14 +81,12 @@ const Showreel = () => {
     {
       image: "slider1.png",
       text: "TAEKWONDO",
-      textSize: "text-9xl",
       buttonText: "SKOÐA NÁMSKEIÐ",
       buttonLink: "namskeid",
     },
     {
       image: "slider2.png",
       text: "Búum til\nSTERKARI BÖRN",
-      textSize: "text-8xl",
       buttonText: "SKOÐA FRÍAN PRUFUTÍMA",
       buttonLink: "prufutimi",
     },
@@ -95,36 +94,24 @@ const Showreel = () => {
 
   return (
     <motion.div
-      className="w-full overflow-hidden"
+      className="show-container"
       initial={{ opacity: 0 }}
       animate={loading ? { opacity: 0 } : { opacity: 1 }}
     >
-      <Slider {...settings} className="bg-black">
+      <Slider {...settings} className="show-slider">
         {slides.map((slide, index) => (
-          <div
-            key={index}
-            className="!flex items-center justify-center h-[60vh] w-full"
-          >
+          <div key={index} className="show-slide-container">
             <div
-              className="relative w-full h-full bg-cover bg-center bg-black/30"
+              className="show-slide-img"
               style={{ backgroundImage: `url(${slide.image})` }}
             >
               <motion.div
-                className={`
-								absolute inset-0 flex flex-col items-center 
-								justify-center gap-20
-							`}
+                className={`show-slide-content`}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 50 }}
               >
-                <h1
-                  className={`
-							text-sigma-red font-bold 
-							break-words text-balance text-center
-							${slide.textSize || "text-4xl"}
-						`}
-                >
+                <h1 className={`show-slide-title`}>
                   <AnimatedText
                     text={slide.text}
                     isOn={isOn}
@@ -135,9 +122,10 @@ const Showreel = () => {
                   variants={buttonVar}
                   animate={buttonDisplayed ? "visible" : "hidden"}
                   initial="hidden"
+                  className="show-slide-button-container"
                 >
                   <Link
-                    className={`p-8 px-10 bg-sigma-red text-alpha-beige font-bold hover:text-sigma-red hover:bg-alpha-beige transition duration-300 ease-in-out`}
+                    className={`show-slide-button`}
                     href={`${slide.buttonLink}`}
                   >
                     {slide.buttonText}
