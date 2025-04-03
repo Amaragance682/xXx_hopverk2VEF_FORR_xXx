@@ -1,5 +1,6 @@
 "use client";
 
+import "./Navigation.css";
 import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
@@ -9,11 +10,11 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="absolute top-0 left-0 w-full p-20 z-50 bg-linear-to-b from-black to-black/0">
-      <div className="flex justify-between md:items-center gap-20 text-white">
-        <ul className="flex justify-start md:items-center gap-20 text-white flex-wrap">
-          <li className="flex items-center" key="logo">
-            <img src="navLogo.png" alt="Logo" className="h-6 object-center" />
+    <nav className="nav-nav">
+      <div className="nav-container">
+        <ul className="nav-ul">
+          <li className="nav-logo-container" key="logo">
+            <img src="navLogo.png" alt="Logo" className="nav-logo" />
           </li>
           {[
             { href: "/", label: "FORSÍÐA" },
@@ -25,24 +26,42 @@ export default function Navigation() {
               <Link
                 href={href}
                 className={`${
-                  pathname === href ? "text-alpha-beige" : "text-alpha-beige/60"
-                } hover:text-alpha-beige
-								transition ease-in-out duration-200
-								p-4 text-lg
-							`}
+                  pathname === href ? "nav-link-current" : "nav-link"
+                }`}
               >
                 {label}
               </Link>
             </li>
           ))}
         </ul>
-        <div className="flex space-x-4">
+        <div className="nav-right-container">
           <ProtectedRoute inverted={true}>
-            <Link href="/login">Login</Link>
-            <Link href="/register">Register</Link>
+            <Link
+              href="/login"
+              className={`${
+                pathname === "/login" ? "nav-link-current" : "nav-link"
+              }`}
+            >
+              Login
+            </Link>
+            <Link
+              href="/register"
+              className={`${
+                pathname === "/register" ? "nav-link-current" : "nav-link"
+              }`}
+            >
+              Register
+            </Link>
           </ProtectedRoute>
           <ProtectedRoute>
-            <Link href="/logout">Logout</Link>
+            <Link
+              href="/logout"
+              className={`${
+                pathname === "/logout" ? "nav-link-current" : "nav-link"
+              }`}
+            >
+              Logout
+            </Link>
           </ProtectedRoute>
         </div>
       </div>
