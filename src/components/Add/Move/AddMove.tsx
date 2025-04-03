@@ -3,13 +3,14 @@
 import React from "react";
 import { useState } from "react";
 import { addMove } from "../../../api/laera.ts";
+import { ErrorType } from "../../../types/error.ts";
 
 export default function AddNamskeid() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<File | null>(null);
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<ErrorType[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -19,7 +20,7 @@ export default function AddNamskeid() {
     setErrors([]);
 
     const token = localStorage.getItem("token");
-    if (!token) return;
+    if (!token || !image) return;
 
     const res = await addMove(name, description, image, token);
 
@@ -67,7 +68,9 @@ export default function AddNamskeid() {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) =>
+              setImage(e.target.files ? e.target.files[0] : null)
+            }
             required
           />
           <button type="submit">Bæta við</button>

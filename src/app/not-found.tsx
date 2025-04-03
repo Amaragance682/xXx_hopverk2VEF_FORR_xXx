@@ -3,7 +3,6 @@ import Footer from "../components/Footer/Footer.tsx";
 import Navigation from "../components/Navigation/Navigation.tsx";
 import Splash from "../components/Splash/Splash.tsx";
 import React from "react";
-import RootLayout from "./layout.tsx";
 
 export default function NotFound() {
   return (

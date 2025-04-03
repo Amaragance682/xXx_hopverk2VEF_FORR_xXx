@@ -1,7 +1,8 @@
 import React from "react";
 import "./Move.css";
+import { MoveType } from "../../../types/laera.ts";
 
-export const MoveThumb = React.forwardRef<HTMLDivElement, { move }>(
+export const MoveThumb = React.forwardRef<HTMLDivElement, { move: MoveType }>(
   ({ move }, ref) => {
     return (
       <div className="move-thumb-container" ref={ref}>
@@ -17,3 +18,5 @@ export const MoveThumb = React.forwardRef<HTMLDivElement, { move }>(
     );
   },
 );
+
+MoveThumb.displayName = "MoveThumb";

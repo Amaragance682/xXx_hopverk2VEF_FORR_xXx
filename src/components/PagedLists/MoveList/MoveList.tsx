@@ -18,7 +18,7 @@ export default function MoveList() {
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastMoveRef = useCallback(
-    (node) => {
+    (node: HTMLElement | null) => {
       console.log("GAMING");
       if (loading) return;
       if (observer.current) observer.current.disconnect();
@@ -66,7 +66,7 @@ export default function MoveList() {
           {moves.map((move, index) => (
             <MoveThumb
               ref={index === moves.length - 1 ? lastMoveRef : null}
-              key={move.id}
+              key={index}
               move={move}
             />
           ))}

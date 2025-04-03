@@ -4,6 +4,7 @@ import React from "react";
 import { useState } from "react";
 import "./AddNamskeid.css";
 import { addNamskeid } from "../../../api/namskeid.ts";
+import { ErrorType } from "../../../types/error.ts";
 
 export default function AddNamskeid() {
   const [name, setName] = useState("");
@@ -12,7 +13,7 @@ export default function AddNamskeid() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<ErrorType[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 

@@ -6,8 +6,17 @@ import "./EditProfa.css";
 import { updateProfa } from "../../../api/profa.ts";
 import DeleteConfirmation from "../../DeleteConfirmation/DeleteConfirmation.tsx";
 import { deleteEntry } from "../../../api/delete.ts";
+import { ErrorType } from "../../../types/error.ts";
+import { useSearchParams } from "next/navigation";
 
-export default function AddProfa({ profa }) {
+export default function AddProfa() {
+  const searchParams = useSearchParams();
+
+  const prufutimiOrNull = searchParams.get("profa");
+  const profa = prufutimiOrNull
+    ? JSON.parse(decodeURIComponent(prufutimiOrNull))
+    : null;
+
   const [date, setDate] = useState(profa.date.slice(0, 16));
   const [duration, setDuration] = useState(
     `${profa.duration.days ? `${profa.duration.days} days` : ""} ${
@@ -17,7 +26,7 @@ export default function AddProfa({ profa }) {
   const [ages, setAges] = useState(profa.ages);
   const [capacity, setCapacity] = useState(profa.capacity);
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<ErrorType[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -123,7 +132,7 @@ export default function AddProfa({ profa }) {
               type="number"
               placeholder="Capacity"
               value={capacity}
-              onChange={(e) => setCapacity(e.target.value)}
+              onChange={(e) => setCapacity(Number(e.target.value))}
               required
             />
             <button type="submit">Uppfæra</button>

@@ -15,7 +15,7 @@ export async function fetchMoves(offset: number = 0, limit: number = 5) {
 export async function addMove(
   title: string,
   description: string,
-  image,
+  image: File,
   token: string,
 ) {
   const formData = new FormData();
