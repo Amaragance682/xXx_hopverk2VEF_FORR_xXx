@@ -7,13 +7,23 @@ import AdminProtectedRoute from "../../ProtectedRoute/AdminProtectedRoute.tsx";
 import Link from "next/link";
 import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute.tsx";
 import { signToProfa } from "../../../api/profa.ts";
+import { ErrorType } from "../../../types/error.ts";
+import { ProfaType } from "../../../types/profa.ts";
+import { useSearchParams } from "next/navigation";
 
-export function Profa({ profa }) {
-  const [errors, setErrors] = useState([]);
+export function Profa() {
+  const searchParams = useSearchParams();
+
+  const prufutimiOrNull = searchParams.get("prufutimi");
+  const profa = prufutimiOrNull
+    ? JSON.parse(decodeURIComponent(prufutimiOrNull))
+    : null;
+
+  const [errors, setErrors] = useState<ErrorType[]>([]);
   const [signed, setSigned] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  async function signUpHandler(e: React.MouseEvent) {
+  async function signUpHandler() {
     setLoading(true);
     const token = localStorage.getItem("token");
     if (!token) return;
@@ -94,7 +104,7 @@ export function Profa({ profa }) {
   );
 }
 
-export function ProfaThumb({ prufutimi }) {
+export function ProfaThumb({ prufutimi }: { prufutimi: ProfaType }) {
   return (
     <div className="prof-thumb-container">
       <h2>{prufutimi.date}</h2>

@@ -41,7 +41,7 @@ export default function DeleteConfirmation({
                     onClick={handleDelete}
                     className="delete-confirm-button"
                   >
-                    Yes I'm sure
+                    Yes I&apos;m sure
                   </button>
                 </div>
               </motion.div>

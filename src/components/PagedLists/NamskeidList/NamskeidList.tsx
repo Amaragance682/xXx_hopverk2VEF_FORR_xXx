@@ -7,12 +7,14 @@ import "./NamskeidList.css";
 import Link from "next/link";
 import AdminProtectedRoute from "../../ProtectedRoute/AdminProtectedRoute.tsx";
 import { NamskeidThumb } from "../../SingularDetails/Namskeid/Namskeid.tsx";
+import { NamskeidType } from "../../../types/namskeid.ts";
 
 export default function NamskeidList() {
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);
-  const [namskeid, setNamskeid] = useState(null);
+  const [namskeid, setNamskeid] = useState<NamskeidType[]>([]);
   const [error, setError] = useState("");
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     async function loadNamskeid() {
@@ -22,7 +24,8 @@ export default function NamskeidList() {
         if (result instanceof Error) {
           setError(result.message);
         } else {
-          setNamskeid(result);
+          setNamskeid(result.data);
+          setTotal(result.total);
           setError("");
         }
       } catch (err) {
@@ -51,7 +54,7 @@ export default function NamskeidList() {
           error ? (
             <p>{error}</p>
           ) : (
-            namskeid.data.map((nam, index) => (
+            namskeid?.map((nam: NamskeidType, index: number) => (
               <li key={index}>
                 <Link
                   href={{
@@ -79,7 +82,7 @@ export default function NamskeidList() {
         <button
           className="namskeid-list-button"
           onClick={nextPage}
-          disabled={!namskeid || offset + 5 >= namskeid.total}
+          disabled={!namskeid || offset + 5 >= total}
         >
           →
         </button>

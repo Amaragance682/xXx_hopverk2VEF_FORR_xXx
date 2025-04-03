@@ -7,12 +7,14 @@ import "./ProfaList.css";
 import AdminProtectedRoute from "../../ProtectedRoute/AdminProtectedRoute.tsx";
 import Link from "next/link";
 import { ProfaThumb } from "../../SingularDetails/Profa/Profa.tsx";
+import { ProfaType } from "../../../types/profa.ts";
 
 export default function ProfaList() {
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);
-  const [profa, setProfa] = useState(null);
+  const [profa, setProfa] = useState<ProfaType[]>([]);
   const [error, setError] = useState("");
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     async function loadProfa() {
@@ -22,7 +24,8 @@ export default function ProfaList() {
         if (result instanceof Error) {
           setError(result.message);
         } else {
-          setProfa(result);
+          setProfa(result.data);
+          setTotal(result.total);
           setError("");
         }
       } catch (err) {
@@ -55,7 +58,7 @@ export default function ProfaList() {
           error ? (
             <p>{error}</p>
           ) : (
-            profa.data.map((prof, index) => (
+            profa.map((prof, index) => (
               <li key={index}>
                 <Link
                   href={{
@@ -83,7 +86,7 @@ export default function ProfaList() {
         <button
           className="profa-list-button"
           onClick={nextPage}
-          disabled={!profa || offset + 5 >= profa.total}
+          disabled={!profa || offset + 5 >= total}
         >
           →
         </button>

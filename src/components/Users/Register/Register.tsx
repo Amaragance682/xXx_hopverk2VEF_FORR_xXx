@@ -5,12 +5,13 @@ import { useState } from "react";
 import { register } from "../../../api/auth.ts";
 import "./Register.css";
 import { useRouter } from "next/navigation";
+import { ErrorType } from "../../../types/error.ts";
 
 export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<ErrorType[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 

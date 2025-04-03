@@ -4,6 +4,7 @@ import React from "react";
 import { useState } from "react";
 import "./AddProfa.css";
 import { addProfa } from "../../../api/profa.ts";
+import { ErrorType } from "../../../types/error.ts";
 
 export default function AddProfa() {
   const [date, setDate] = useState("");
@@ -11,7 +12,7 @@ export default function AddProfa() {
   const [ages, setAges] = useState("");
   const [capacity, setCapacity] = useState("");
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<ErrorType[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 

@@ -59,7 +59,7 @@ export async function updateProfa(
   date: string,
   duration: string,
   ages: string,
-  capacity: string,
+  capacity: number,
   token: string,
   id: number,
 ) {
