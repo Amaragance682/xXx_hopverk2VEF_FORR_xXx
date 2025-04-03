@@ -21,4 +21,4 @@ Ragnar Björn Ingvarsson, Skogarbjorn
 
 Ólafur Sær Sigursteinsson, Amaragance682
 
-&copy; 2025 gamer
+&copy; 2025 sigma gamer
