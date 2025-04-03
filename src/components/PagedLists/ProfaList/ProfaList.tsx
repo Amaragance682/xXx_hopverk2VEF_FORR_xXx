@@ -83,7 +83,7 @@ export default function ProfaList() {
         <button
           className="profa-list-button"
           onClick={nextPage}
-          disabled={!profa || offset + 5 > profa.total}
+          disabled={!profa || offset + 5 >= profa.total}
         >
           →
         </button>

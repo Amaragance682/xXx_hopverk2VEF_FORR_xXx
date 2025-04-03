@@ -2,16 +2,16 @@ import React from "react";
 import Navigation from "../../components/Navigation/Navigation.tsx";
 import Footer from "../../components/Footer/Footer.tsx";
 import Splash from "../../components/Splash/Splash.tsx";
-import NamskeidList from "../../components/PagedLists/NamskeidList/NamskeidList.tsx";
 import ContentBody from "../../components/ContentBody/ContentBody.tsx";
+import MoveList from "../../components/PagedLists/MoveList/MoveList.tsx";
 
-export default function NamskeidListPage() {
+export default function LaeraListPage() {
   return (
     <>
       <Navigation />
-      <Splash title="namskeid" />
+      <Splash title="Læra" />
       <ContentBody>
-        <NamskeidList />
+        <MoveList />
       </ContentBody>
       <Footer />
     </>

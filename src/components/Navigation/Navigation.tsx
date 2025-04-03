@@ -9,9 +9,9 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="absolute top-0 left-0 w-full p-20 z-50 bg-linear-to-b from-black/70 to-black/0">
+    <nav className="absolute top-0 left-0 w-full p-20 z-50 bg-linear-to-b from-black to-black/0">
       <div className="flex justify-between md:items-center gap-20 text-white">
-        <ul className="flex justify-start md:items-center gap-20 text-white">
+        <ul className="flex justify-start md:items-center gap-20 text-white flex-wrap">
           <li className="flex items-center" key="logo">
             <img src="navLogo.png" alt="Logo" className="h-6 object-center" />
           </li>
@@ -19,6 +19,7 @@ export default function Navigation() {
             { href: "/", label: "FORSÍÐA" },
             { href: "/prufutimi", label: "SKOÐA PRUFUTÍMA" },
             { href: "/namskeid", label: "SKOÐA NÁMSKEIÐ" },
+            { href: "/laera", label: "LÆRA" },
           ].map(({ href, label }, index) => (
             <li className="" key={index}>
               <Link

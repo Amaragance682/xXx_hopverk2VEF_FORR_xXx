@@ -1,0 +1,54 @@
+.move-thumb-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  gap: 1rem;
+  background-color: var(--color-alpha-beige);
+  filter: brightness(1.03);
+  transition: scale 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.move-thumb-container:hover {
+  scale: 1.03;
+}
+
+.move-thumb-image {
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.15));
+  border-radius: 1rem;
+  width: 340px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.move-thumb-content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.move-thumb-title {
+  font-weight: 900;
+  font-size: 2rem;
+  font-family: var(--font-primary);
+  color: black;
+}
+
+.move-thumb-description {
+  flex-grow: 1;
+}
+
+.move-thumb-accent-line {
+  width: 100%;
+  height: 2px; /* Thickness of the line */
+  background-color: var(--color-sigma-red); /* Adjust to your accent color */
+  margin: 0.5rem 0; /* Spacing around the line */
+}

@@ -79,7 +79,7 @@ export default function NamskeidList() {
         <button
           className="namskeid-list-button"
           onClick={nextPage}
-          disabled={!namskeid || offset + 5 > namskeid.total}
+          disabled={!namskeid || offset + 5 >= namskeid.total}
         >
           →
         </button>
