@@ -11,9 +11,7 @@ export default function NotFound() {
       <Navigation />
       <Splash title="404" />
       <ContentBody>
-        <div>
-          <h1>The page you were looking for does not exist</h1>
-        </div>
+        <h1>The page you were looking for does not exist</h1>
       </ContentBody>
       <Footer />
     </>
